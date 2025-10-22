@@ -24,6 +24,12 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
+      # ✅ Add this step to make commits count as YOUR contributions
+      - name: Set Git identity
+        run: |
+          git config --global user.name "Shreyas Kamat"
+          git config --global user.email "192124395+ShreyasNK2006@users.noreply.github.com"
+
       - name: Run LeetCode Sync
         env:
           LEETCODE_USERNAME: ${{ secrets.LEETCODE_USERNAME }}
