@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write   # allows workflow to commit files
+      contents: write
 
     steps:
       - name: Checkout Repository
@@ -24,7 +24,6 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
-      # ✅ Add this step to make commits count as YOUR contributions
       - name: Set Git identity
         run: |
           git config --global user.name "Shreyas Kamat"
@@ -37,3 +36,9 @@ jobs:
           REPO_NAME: ${{ secrets.REPO_NAME }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python leetcode_to_github.py
+
+      - name: Commit and Push Changes
+        run: |
+          git add .
+          git commit -m "Daily LeetCode Sync" --author="Shreyas Kamat <192124395+ShreyasNK2006@users.noreply.github.com>" || echo "No changes to commit"
+          git push origin main
