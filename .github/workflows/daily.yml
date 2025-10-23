@@ -2,7 +2,7 @@ name: Daily LeetCode Sync
 
 on:
   schedule:
-    - cron: "30 2 * * *"   # Runs daily at 8:00 AM IST
+    - cron: "0 14 * * *"   # Runs daily at 7:30 PM IST (14:00 UTC)
   workflow_dispatch:
 
 jobs:
@@ -35,7 +35,14 @@ jobs:
           LEETCODE_SESSION: ${{ secrets.LEETCODE_SESSION }}
           REPO_NAME: ${{ secrets.REPO_NAME }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python leetcode_to_github.py
+        # Set commit timestamps to 7:30 PM IST (14:00 UTC) on the current run date
+        run: |
+          export TARGET_DATE_UTC=$(date -u +"%Y-%m-%d")
+          export GIT_AUTHOR_DATE="${TARGET_DATE_UTC} 14:00:00 +0000"
+          export GIT_COMMITTER_DATE="${TARGET_DATE_UTC} 14:00:00 +0000"
+          echo "Using GIT_AUTHOR_DATE=$GIT_AUTHOR_DATE"
+          echo "Using GIT_COMMITTER_DATE=$GIT_COMMITTER_DATE"
+          python leetcode_to_github.py
 
       - name: Commit and Push Changes
         run: |
