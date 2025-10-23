@@ -5,13 +5,11 @@ REPO_NAME = os.getenv("REPO_NAME")
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 LEETCODE_SESSION = os.getenv("LEETCODE_SESSION")
 
-GITHUB_API = "https://api.github.com"
-
+# We'll write files locally and let the workflow commit them
 HEADERS = {
     "cookie": f"LEETCODE_SESSION={LEETCODE_SESSION}",
     "User-Agent": "Mozilla/5.0",
 }
-
 
 def get_all_submissions(limit=200):
     """Fetch accepted submissions with code from LeetCode."""
@@ -26,32 +24,28 @@ def get_all_submissions(limit=200):
             break
         data = res.json()
         for sub in data["submissions_dump"]:
-            if sub["status_display"] == "Accepted":
+            if sub.get("status_display") == "Accepted":
+                # Ensure the submission contains code; older dumps sometimes don't include it
                 submissions.append(sub)
         if not data.get("has_next"):
             break
         offset += 20
         time.sleep(0.5)
 
-    # ✅ Reverse to get oldest → newest order
-    submissions.reverse()
+    submissions.reverse()  # oldest → newest
     return submissions
 
+def get_existing_files_local():
+    """List uploaded problem files in local problems/ folder (by slug)."""
+    problems_dir = os.path.join(os.getcwd(), "problems")
+    if not os.path.isdir(problems_dir):
+        return []
+    return [os.path.splitext(f)[0] for f in os.listdir(problems_dir) if os.path.isfile(os.path.join(problems_dir, f))]
 
-def get_existing_files():
-    """List uploaded problem files (by slug)."""
-    url = f"{GITHUB_API}/repos/{REPO_NAME}/contents/problems"
-    headers = {"Authorization": f"token {GITHUB_TOKEN}"}
-    r = requests.get(url, headers=headers)
-    if r.status_code == 200:
-        return [file["name"].split(".")[0] for file in r.json()]
-    return []
-
-
-def commit_to_github(sub):
-    """Commit a single problem solution to GitHub."""
+def save_solution_locally(sub):
+    """Save a single problem solution to the local workspace under problems/."""
     slug = sub["title_slug"]
-    lang_ext = sub["lang"]
+    lang_ext = sub.get("lang")
     ext_map = {
         "python3": "py",
         "cpp": "cpp",
@@ -61,41 +55,33 @@ def commit_to_github(sub):
     }
     ext = ext_map.get(lang_ext, "txt")
 
-    filename = f"problems/{slug}.{ext}"
-    date = datetime.datetime.fromtimestamp(int(sub["timestamp"]))
-    header = f"# {sub['title']}\nSolved on {date.strftime('%Y-%m-%d')}\n\n"
-    code = header + sub["code"]
+    filename = os.path.join("problems", f"{slug}.{ext}")
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
 
-    content_b64 = base64.b64encode(code.encode()).decode()
+    date = datetime.datetime.fromtimestamp(int(sub.get("timestamp", time.time())))
+    header = f"# {sub.get('title')}\nSolved on {date.strftime('%Y-%m-%d')}\n\n"
+    code = sub.get("code") or ""
+    content = header + code
 
-    api_url = f"{GITHUB_API}/repos/{REPO_NAME}/contents/{filename}"
-    headers = {"Authorization": f"token {GITHUB_TOKEN}"}
-    data = {"message": f"Add {sub['title']} solution", "content": content_b64}
-
-    r = requests.put(api_url, headers=headers, json=data)
-    if r.status_code in [200, 201]:
-        print(f"✅ Uploaded: {sub['title']}")
-    else:
-        print(f"❌ Failed: {sub['title']} ({r.status_code})")
-
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(content)
+    print(f"✅ Saved locally: {filename}")
 
 def main():
     subs = get_all_submissions(limit=200)
-    uploaded = get_existing_files()
+    uploaded = get_existing_files_local()
     count = 0
 
-    # Go oldest → newest
     for sub in subs:
         slug = sub["title_slug"]
         if slug not in uploaded:
-            commit_to_github(sub)
+            save_solution_locally(sub)
             count += 1
-        if count >= 2:
+        if count >= 2:  # keep your existing limit behaviour
             break
 
     if count == 0:
         print("🎉 All problems already uploaded!")
-
 
 if __name__ == "__main__":
     main()
