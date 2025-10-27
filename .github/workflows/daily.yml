@@ -2,6 +2,7 @@ name: Daily LeetCode Sync
 
 on:
   schedule:
+    - cron: "0 2 * * *"    # Runs daily at 7:30 AM IST (02:00 UTC)
     - cron: "0 14 * * *"   # Runs daily at 7:30 PM IST (14:00 UTC)
   workflow_dispatch:
 
@@ -46,8 +47,6 @@ jobs:
           echo "Using GIT_COMMITTER_DATE=$GIT_COMMITTER_DATE"
           python leetcode_to_github.py
 
-      - name: Commit and Push Changes
+      - name: Push Changes
         run: |
-          git add .
-          git commit -m "Daily LeetCode Sync" --author="Shreyas Kamat <192124395+ShreyasNK2006@users.noreply.github.com>" || echo "No changes to commit"
           git push origin main

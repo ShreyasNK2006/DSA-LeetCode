@@ -77,7 +77,7 @@ def save_solution_locally(sub):
     try:
         subprocess.run(["git", "add", filename], check=True)
         author_flag = f"{commit_name} <{commit_email}>"
-        msg = f"Add {sub.get('title', slug)} solution"
+        msg = str(sub.get('title') or slug)
         # Use -c to ensure committer identity even if global config differs
         subprocess.run([
             "git",
