@@ -35,6 +35,8 @@ jobs:
           LEETCODE_SESSION: ${{ secrets.LEETCODE_SESSION }}
           REPO_NAME: ${{ secrets.REPO_NAME }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMIT_NAME: "Shreyas Kamat"
+          COMMIT_EMAIL: "192124395+ShreyasNK2006@users.noreply.github.com"
         # Set commit timestamps to 7:30 PM IST (14:00 UTC) on the current run date
         run: |
           export TARGET_DATE_UTC=$(date -u +"%Y-%m-%d")

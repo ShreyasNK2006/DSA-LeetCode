@@ -1,4 +1,4 @@
-import requests, os, json, base64, datetime, time
+import requests, os, json, base64, datetime, time, subprocess
 
 LEETCODE_USERNAME = os.getenv("LEETCODE_USERNAME")
 REPO_NAME = os.getenv("REPO_NAME")
@@ -66,6 +66,31 @@ def save_solution_locally(sub):
     with open(filename, "w", encoding="utf-8") as f:
         f.write(content)
     print(f"✅ Saved locally: {filename}")
+
+    # Create a separate commit for this file
+    commit_name = os.getenv("COMMIT_NAME") or os.getenv("GIT_AUTHOR_NAME") or os.getenv("GITHUB_ACTOR") or LEETCODE_USERNAME or "LeetCode Sync"
+    # Prefer explicit COMMIT_EMAIL; fall back to GitHub noreply if actor is present
+    actor = os.getenv("GITHUB_ACTOR")
+    default_noreply = f"{actor}@users.noreply.github.com" if actor else "noreply@github.com"
+    commit_email = os.getenv("COMMIT_EMAIL") or os.getenv("GIT_AUTHOR_EMAIL") or default_noreply
+
+    try:
+        subprocess.run(["git", "add", filename], check=True)
+        author_flag = f"{commit_name} <{commit_email}>"
+        msg = f"Add {sub.get('title', slug)} solution"
+        # Use -c to ensure committer identity even if global config differs
+        subprocess.run([
+            "git",
+            "-c", f"user.name={commit_name}",
+            "-c", f"user.email={commit_email}",
+            "commit",
+            "--author", author_flag,
+            "-m", msg,
+        ], check=True)
+        print(f"📝 Committed: {filename}")
+    except subprocess.CalledProcessError as e:
+        # If nothing to commit (shouldn't happen when adding a new file), just log
+        print(f"⚠️ Git commit skipped/failed for {filename}: {e}")
 
 def main():
     subs = get_all_submissions(limit=200)
