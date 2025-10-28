@@ -23,9 +23,9 @@ def get_all_submissions(limit=200):
             print("❌ Failed to fetch submissions:", res.text)
             break
         data = res.json()
-        for sub in data["submissions_dump"]:
-            if sub.get("status_display") == "Accepted":
-                # Ensure the submission contains code; older dumps sometimes don't include it
+        for sub in data.get("submissions_dump", []):
+            if sub.get("status_display") == "Accepted" and sub.get("code"):
+                # Only take accepted submissions that include code
                 submissions.append(sub)
         if not data.get("has_next"):
             break
@@ -93,6 +93,16 @@ def save_solution_locally(sub):
         print(f"⚠️ Git commit skipped/failed for {filename}: {e}")
 
 def main():
+    # Basic validation for required secrets; fail fast so the workflow shows a clear error
+    missing = []
+    if not LEETCODE_SESSION:
+        missing.append("LEETCODE_SESSION")
+    if not LEETCODE_USERNAME:
+        missing.append("LEETCODE_USERNAME")
+    if missing:
+        print(f"❌ Missing required secret(s): {', '.join(missing)}. Configure them in Repo Settings → Secrets and variables → Actions.")
+        raise SystemExit(1)
+
     subs = get_all_submissions(limit=200)
     uploaded = get_existing_files_local()
     count = 0
@@ -106,7 +116,10 @@ def main():
             break
 
     if count == 0:
-        print("🎉 All problems already uploaded!")
+        if uploaded:
+            print("ℹ️ No new submissions to upload (all already uploaded).")
+        else:
+            print("ℹ️ No submissions found with code from LeetCode.")
 
 if __name__ == "__main__":
     main()
