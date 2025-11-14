@@ -14,10 +14,17 @@ public:
             if(mp[s[i]]==2)
             {
                 len = max(len,(int)temp.length()-1);
-                mp.clear();
-                i-=(int)temp.length();
-                i++;
-                temp.clear();
+                for(int j=0;j<temp.length();)
+                {
+                    mp[temp[j]]--;
+                    if(temp[j]!=s[i])
+                        temp.erase(temp.begin()+j);
+                    else
+                    {
+                        temp.erase(temp.begin()+j);
+                        break;
+                    }
+                }
             }
         }
         len = max(len,(int)temp.length());
