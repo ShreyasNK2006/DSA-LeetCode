@@ -1,5 +1,9 @@
-# Count Subarrays With Majority Element I
-Solved on 2025-11-08
+/*
+ * Problem: Count Subarrays With Majority Element I
+ * Solved on: 2025-11-08
+ * Runtime: 41 ms
+ * Memory: 39.4 MB
+*/
 
 class Solution {
 public:
