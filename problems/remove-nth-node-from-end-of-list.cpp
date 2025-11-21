@@ -1,5 +1,9 @@
-# Remove Nth Node From End of List
-Solved on 2025-11-07
+/*
+ * Problem: Remove Nth Node From End of List
+ * Solved on: 2025-11-07
+ * Runtime: 0 ms
+ * Memory: 14.9 MB
+*/
 
 /**
  * Definition for singly-linked list.
