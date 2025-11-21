@@ -1,5 +1,9 @@
-# Minimum String Length After Balanced Removals
-Solved on 2025-11-16
+/*
+ * Problem: Minimum String Length After Balanced Removals
+ * Solved on: 2025-11-16
+ * Runtime: 235 ms
+ * Memory: 14.9 MB
+*/
 
 class Solution {
 public:
