@@ -1,5 +1,9 @@
-# Smallest Number With All Set Bits
-Solved on 2025-10-29
+/*
+ * Problem: Smallest Number With All Set Bits
+ * Solved on: 2025-10-29
+ * Runtime: 0 ms
+ * Memory: 8.2 MB
+*/
 
 class Solution {
 public:
