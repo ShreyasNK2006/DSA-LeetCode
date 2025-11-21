@@ -1,5 +1,9 @@
-# Partition Equal Subset Sum
-Solved on 2025-11-12
+/*
+ * Problem: Partition Equal Subset Sum
+ * Solved on: 2025-11-12
+ * Runtime: 87 ms
+ * Memory: 13.4 MB
+*/
 
 class Solution {
 public:
