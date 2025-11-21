@@ -1,5 +1,9 @@
-# Largest Rectangle in Histogram
-Solved on 2025-10-30
+/*
+ * Problem: Largest Rectangle in Histogram
+ * Solved on: 2025-10-30
+ * Runtime: 17 ms
+ * Memory: 85.8 MB
+*/
 
 class Solution {
 public:
