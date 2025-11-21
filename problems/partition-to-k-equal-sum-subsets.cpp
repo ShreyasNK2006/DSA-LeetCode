@@ -1,5 +1,9 @@
-# Partition to K Equal Sum Subsets
-Solved on 2025-11-13
+/*
+ * Problem: Partition to K Equal Sum Subsets
+ * Solved on: 2025-11-13
+ * Runtime: 584 ms
+ * Memory: 12.1 MB
+*/
 
 class Solution {
 public:
