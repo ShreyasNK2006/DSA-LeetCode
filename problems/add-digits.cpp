@@ -1,5 +1,9 @@
-# Add Digits
-Solved on 2025-11-12
+/*
+ * Problem: Add Digits
+ * Solved on: 2025-11-12
+ * Runtime: 0 ms
+ * Memory: 8.6 MB
+*/
 
 class Solution {
 public:
