@@ -1,5 +1,9 @@
-# Longest Repeating Character Replacement
-Solved on 2025-11-12
+/*
+ * Problem: Longest Repeating Character Replacement
+ * Solved on: 2025-11-12
+ * Runtime: 0 ms
+ * Memory: 10.8 MB
+*/
 
 class Solution {
 public:
