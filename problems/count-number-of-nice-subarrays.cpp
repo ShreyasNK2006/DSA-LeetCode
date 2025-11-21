@@ -1,5 +1,9 @@
-# Count Number of Nice Subarrays
-Solved on 2025-11-14
+/*
+ * Problem: Count Number of Nice Subarrays
+ * Solved on: 2025-11-14
+ * Runtime: 4 ms
+ * Memory: 71.4 MB
+*/
 
 class Solution {
 public:
