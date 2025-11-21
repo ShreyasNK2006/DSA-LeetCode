@@ -1,0 +1,45 @@
+name: Annotate Existing Solutions
+
+on:
+  workflow_dispatch:
+
+jobs:
+  annotate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Set Git identity
+        run: |
+          git config --global user.name "Shreyas Kamat"
+          git config --global user.email "192124395+ShreyasNK2006@users.noreply.github.com"
+
+      - name: Run Annotation Script
+        env:
+          LEETCODE_USERNAME: ${{ secrets.LEETCODE_USERNAME }}
+          LEETCODE_SESSION: ${{ secrets.LEETCODE_SESSION }}
+          REPO_NAME: ${{ secrets.REPO_NAME }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMIT_NAME: "Shreyas Kamat"
+          COMMIT_EMAIL: "192124395+ShreyasNK2006@users.noreply.github.com"
+        run: |
+          python annotate_existing.py
+
+      - name: Push Changes
+        run: |
+          git push origin HEAD:main
