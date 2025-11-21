@@ -1,5 +1,9 @@
-# Minimum Time to Make Rope Colorful
-Solved on 2025-11-03
+/*
+ * Problem: Minimum Time to Make Rope Colorful
+ * Solved on: 2025-11-03
+ * Runtime: 7 ms
+ * Memory: 99.9 MB
+*/
 
 class Solution {
 public:
