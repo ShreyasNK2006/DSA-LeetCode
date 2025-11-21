@@ -1,5 +1,9 @@
-# Max Consecutive Ones III
-Solved on 2025-11-12
+/*
+ * Problem: Max Consecutive Ones III
+ * Solved on: 2025-11-12
+ * Runtime: 0 ms
+ * Memory: 69.5 MB
+*/
 
 class Solution {
 public:
