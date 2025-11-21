@@ -1,5 +1,9 @@
-# Array Partition
-Solved on 2025-10-30
+/*
+ * Problem: Array Partition
+ * Solved on: 2025-10-30
+ * Runtime: 9 ms
+ * Memory: 32 MB
+*/
 
 class Solution {
 public:
