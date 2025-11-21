@@ -1,5 +1,9 @@
-# Minimum Distance Between Three Equal Elements I
-Solved on 2025-11-09
+/*
+ * Problem: Minimum Distance Between Three Equal Elements I
+ * Solved on: 2025-11-09
+ * Runtime: 11 ms
+ * Memory: 30.7 MB
+*/
 
 class Solution {
 public:
