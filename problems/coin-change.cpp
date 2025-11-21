@@ -1,5 +1,9 @@
-# Coin Change
-Solved on 2025-11-13
+/*
+ * Problem: Coin Change
+ * Solved on: 2025-11-13
+ * Runtime: 11 ms
+ * Memory: 17.8 MB
+*/
 
 class Solution {
 public:
