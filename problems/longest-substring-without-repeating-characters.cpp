@@ -1,5 +1,9 @@
-# Longest Substring Without Repeating Characters
-Solved on 2025-11-08
+/*
+ * Problem: Longest Substring Without Repeating Characters
+ * Solved on: 2025-11-08
+ * Runtime: 11 ms
+ * Memory: 12.1 MB
+*/
 
 class Solution {
 public:
