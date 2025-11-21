@@ -1,5 +1,9 @@
-# Median of Two Sorted Arrays
-Solved on 2025-11-05
+/*
+ * Problem: Median of Two Sorted Arrays
+ * Solved on: 2025-11-10
+ * Runtime: 0 ms
+ * Memory: 95.2 MB
+*/
 
 class Solution {
 public:
