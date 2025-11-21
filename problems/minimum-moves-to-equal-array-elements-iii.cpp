@@ -1,5 +1,9 @@
-# Minimum Moves to Equal Array Elements III
-Solved on 2025-11-08
+/*
+ * Problem: Minimum Moves to Equal Array Elements III
+ * Solved on: 2025-11-08
+ * Runtime: 0 ms
+ * Memory: 31.4 MB
+*/
 
 class Solution {
 public:
