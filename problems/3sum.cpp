@@ -1,5 +1,9 @@
-# 3Sum
-Solved on 2025-11-06
+/*
+ * Problem: 3Sum
+ * Solved on: 2025-11-11
+ * Runtime: 46 ms
+ * Memory: 29.2 MB
+*/
 
 class Solution {
 public:
