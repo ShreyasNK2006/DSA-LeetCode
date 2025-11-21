@@ -1,5 +1,9 @@
-# Maximize Expression of Three Elements
-Solved on 2025-11-16
+/*
+ * Problem: Maximize Expression of Three Elements
+ * Solved on: 2025-11-16
+ * Runtime: 0 ms
+ * Memory: 31.2 MB
+*/
 
 class Solution {
 public:
