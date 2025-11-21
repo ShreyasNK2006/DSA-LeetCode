@@ -1,5 +1,9 @@
-# Longest Palindromic Substring
-Solved on 2025-11-04
+/*
+ * Problem: Longest Palindromic Substring
+ * Solved on: 2025-11-04
+ * Runtime: 11 ms
+ * Memory: 9.3 MB
+*/
 
 class Solution {
 public:
