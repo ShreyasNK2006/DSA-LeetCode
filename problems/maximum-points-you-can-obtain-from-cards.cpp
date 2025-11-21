@@ -1,5 +1,9 @@
-# Maximum Points You Can Obtain from Cards
-Solved on 2025-11-15
+/*
+ * Problem: Maximum Points You Can Obtain from Cards
+ * Solved on: 2025-11-15
+ * Runtime: 0 ms
+ * Memory: 46.3 MB
+*/
 
 class Solution {
 public:
