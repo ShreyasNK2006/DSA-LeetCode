@@ -1,5 +1,9 @@
-# Sliding Window Maximum
-Solved on 2025-11-01
+/*
+ * Problem: Sliding Window Maximum
+ * Solved on: 2025-11-01
+ * Runtime: 17 ms
+ * Memory: 139.2 MB
+*/
 
 class Solution {
 public:
