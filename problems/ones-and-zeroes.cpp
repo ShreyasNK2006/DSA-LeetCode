@@ -1,5 +1,9 @@
-# Ones and Zeroes
-Solved on 2025-11-12
+/*
+ * Problem: Ones and Zeroes
+ * Solved on: 2025-11-12
+ * Runtime: 46 ms
+ * Memory: 13.9 MB
+*/
 
 class Solution {
 public:
