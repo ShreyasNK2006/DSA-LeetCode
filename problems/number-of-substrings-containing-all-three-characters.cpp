@@ -1,5 +1,9 @@
-# Number of Substrings Containing All Three Characters
-Solved on 2025-11-14
+/*
+ * Problem: Number of Substrings Containing All Three Characters
+ * Solved on: 2025-11-14
+ * Runtime: 3 ms
+ * Memory: 11 MB
+*/
 
 class Solution {
 public:
