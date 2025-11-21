@@ -1,5 +1,9 @@
-# Online Stock Span
-Solved on 2025-11-01
+/*
+ * Problem: Online Stock Span
+ * Solved on: 2025-11-01
+ * Runtime: 35 ms
+ * Memory: 92.1 MB
+*/
 
 class StockSpanner {
 public:
