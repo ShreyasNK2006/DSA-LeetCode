@@ -1,5 +1,9 @@
-# Subarrays with K Different Integers
-Solved on 2025-11-15
+/*
+ * Problem: Subarrays with K Different Integers
+ * Solved on: 2025-11-15
+ * Runtime: 54 ms
+ * Memory: 53.4 MB
+*/
 
 class Solution {
 public:
