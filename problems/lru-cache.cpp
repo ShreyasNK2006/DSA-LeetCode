@@ -1,5 +1,9 @@
-# LRU Cache
-Solved on 2025-11-01
+/*
+ * Problem: LRU Cache
+ * Solved on: 2025-11-01
+ * Runtime: 80 ms
+ * Memory: 172.9 MB
+*/
 
 class LRUCache {
 public:
