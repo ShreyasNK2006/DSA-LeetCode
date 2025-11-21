@@ -1,5 +1,9 @@
-# Maximal Rectangle
-Solved on 2025-10-31
+/*
+ * Problem: Maximal Rectangle
+ * Solved on: 2025-10-31
+ * Runtime: 6 ms
+ * Memory: 20.5 MB
+*/
 
 class Solution {
 public:
