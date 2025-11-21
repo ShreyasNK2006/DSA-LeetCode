@@ -42,6 +42,43 @@ def get_existing_files_local():
         return []
     return [os.path.splitext(f)[0] for f in os.listdir(problems_dir) if os.path.isfile(os.path.join(problems_dir, f))]
 
+def generate_comment_block(sub, lang_ext):
+    """Generates a comment block with submission details."""
+    title = sub.get("title")
+    timestamp = sub.get("timestamp")
+    runtime = sub.get("runtime")
+    memory = sub.get("memory")
+    
+    date_str = datetime.datetime.fromtimestamp(int(timestamp)).strftime('%Y-%m-%d')
+    
+    info_lines = [
+        f"Problem: {title}",
+        f"Solved on: {date_str}",
+        f"Runtime: {runtime}",
+        f"Memory: {memory}",
+    ]
+    
+    # Determine comment syntax
+    if lang_ext in ["python3", "python"]:
+        start, end, prefix = '"""', '"""', ""
+    elif lang_ext in ["cpp", "java", "c", "javascript", "typescript", "csharp", "kotlin", "swift", "dart", "golang", "scala"]:
+        start, end, prefix = "/*", "*/", " * "
+    else:
+        # Default to hash comments if unknown
+        start, end, prefix = "", "", "# "
+        
+    comment = []
+    if start:
+        comment.append(start)
+    
+    for line in info_lines:
+        comment.append(f"{prefix}{line}")
+        
+    if end:
+        comment.append(end)
+        
+    return "\n".join(comment) + "\n\n"
+
 def save_solution_locally(sub):
     """Save a single problem solution to the local workspace under problems/."""
     slug = sub["title_slug"]
@@ -58,10 +95,10 @@ def save_solution_locally(sub):
     filename = os.path.join("problems", f"{slug}.{ext}")
     os.makedirs(os.path.dirname(filename), exist_ok=True)
 
-    date = datetime.datetime.fromtimestamp(int(sub.get("timestamp", time.time())))
-    header = f"# {sub.get('title')}\nSolved on {date.strftime('%Y-%m-%d')}\n\n"
+    # Generate comment block
+    comment_block = generate_comment_block(sub, lang_ext)
     code = sub.get("code") or ""
-    content = header + code
+    content = comment_block + code
 
     with open(filename, "w", encoding="utf-8") as f:
         f.write(content)
