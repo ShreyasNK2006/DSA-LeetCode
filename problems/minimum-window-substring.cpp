@@ -1,5 +1,9 @@
-# Minimum Window Substring
-Solved on 2025-11-15
+/*
+ * Problem: Minimum Window Substring
+ * Solved on: 2025-11-15
+ * Runtime: 18 ms
+ * Memory: 11.5 MB
+*/
 
 class Solution {
 public:
