@@ -1,5 +1,9 @@
-# Binary Subarrays With Sum
-Solved on 2025-11-12
+/*
+ * Problem: Binary Subarrays With Sum
+ * Solved on: 2025-11-12
+ * Runtime: 16 ms
+ * Memory: 38.8 MB
+*/
 
 class Solution {
 public:
