@@ -1,5 +1,9 @@
-# LFU Cache
-Solved on 2025-11-08
+/*
+ * Problem: LFU Cache
+ * Solved on: 2025-11-08
+ * Runtime: 163 ms
+ * Memory: 193.5 MB
+*/
 
 struct Node{
     int key;
