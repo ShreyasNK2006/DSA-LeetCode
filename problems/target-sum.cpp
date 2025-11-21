@@ -1,5 +1,9 @@
-# Target Sum
-Solved on 2025-11-12
+/*
+ * Problem: Target Sum
+ * Solved on: 2025-11-12
+ * Runtime: 0 ms
+ * Memory: 12.4 MB
+*/
 
 class Solution {
 public:
