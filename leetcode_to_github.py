@@ -60,11 +60,12 @@ def get_ai_explanation(code, lang_ext):
     try:
         model = genai.GenerativeModel('gemini-pro')
         prompt = f"""
-        Explain the following {lang_ext} solution for a LeetCode problem.
-        1. Approach: A concise summary of the algorithm/logic.
-        2. Variables: Explain the purpose of key variables.
+        You are an expert coding tutor. Explain the following {lang_ext} solution for a LeetCode problem.
         
-        Keep it concise and formatted as a comment block content.
+        1. Approach: Summarize the algorithm and logic used.
+        2. Code Breakdown: Explain the purpose of every key variable and the main steps.
+        
+        Format the output as a clean comment block (no markdown code fences).
         
         Code:
         {code}

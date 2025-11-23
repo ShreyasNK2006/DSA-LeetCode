@@ -29,7 +29,8 @@ def commit_file(filepath, msg):
 def annotate_existing():
     print("Fetching submissions...")
     # Fetch enough to cover history
-    submissions = get_all_submissions(limit=1000) 
+    submissions = get_all_submissions(limit=2000) 
+    print(f"Fetched {len(submissions)} submissions.")
     
     # Map slug -> submission (prefer newest accepted)
     sub_map = {}
