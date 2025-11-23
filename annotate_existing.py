@@ -61,8 +61,15 @@ def annotate_existing():
         # Check if already annotated with the new style
         # The new style starts with comment markers.
         # We can check for "Runtime:" and "Memory:" in the first few lines
-        if "Runtime:" in content[:500] and "Memory:" in content[:500]:
-             print(f"ℹ️ {filename} seems already annotated.")
+        is_annotated = "Runtime:" in content[:500] and "Memory:" in content[:500]
+        has_explanation = "Approach:" in content[:1500] or "Explanation:" in content[:1500]
+        
+        if is_annotated and has_explanation:
+             print(f"ℹ️ {filename} seems already annotated with explanation.")
+             continue
+             
+        if is_annotated and not GEMINI_API_KEY:
+             print(f"ℹ️ {filename} already annotated (no API key to add explanation).")
              continue
 
         # Remove old header if present
@@ -72,10 +79,21 @@ def annotate_existing():
         # <blank>
         
         clean_content = content
-        old_header_start = f"# {sub.get('title')}"
         
-        # Simple heuristic: if it starts with # and has "Solved on" in the first 3 lines
-        lines = content.splitlines()
+        # Strip existing block comment if it exists (for re-annotation)
+        if is_annotated:
+            if content.strip().startswith("/*"):
+                end_idx = content.find("*/")
+                if end_idx != -1:
+                    clean_content = content[end_idx+2:].lstrip()
+            elif content.strip().startswith('"""'):
+                # Find the second occurrence of """
+                end_idx = content.find('"""', 3)
+                if end_idx != -1:
+                    clean_content = content[end_idx+3:].lstrip()
+        
+        # Fallback for the very old header format
+        lines = clean_content.splitlines()
         if len(lines) > 0 and lines[0].startswith("# "):
             if len(lines) > 1 and "Solved on" in lines[1]:
                 # Remove the first 2 lines and any following blank lines
@@ -83,6 +101,8 @@ def annotate_existing():
             elif len(lines) > 2 and "Solved on" in lines[2]:
                  # Sometimes there might be an extra line?
                  clean_content = "\n".join(lines[3:]).lstrip()
+        
+        final_content = new_block + clean_content
         
         final_content = new_block + clean_content
         
