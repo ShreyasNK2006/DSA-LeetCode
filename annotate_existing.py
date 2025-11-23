@@ -2,7 +2,7 @@ import os
 import subprocess
 import datetime
 import time
-from leetcode_to_github import get_all_submissions, generate_comment_block, LEETCODE_USERNAME
+from leetcode_to_github import get_all_submissions, generate_comment_block, LEETCODE_USERNAME, GEMINI_API_KEY
 
 def commit_file(filepath, msg):
     """Commits a single file with the given message."""
@@ -91,6 +91,11 @@ def annotate_existing():
             
         print(f"✅ Annotated {filename}")
         commit_file(filepath, f"Annotate {filename} with explanation header")
+        
+        # Rate limiting for Gemini API (free tier is ~15 RPM, so 4s delay is safe)
+        if GEMINI_API_KEY:
+            print("⏳ Waiting 4s for API rate limit...")
+            time.sleep(4)
 
 if __name__ == "__main__":
     annotate_existing()

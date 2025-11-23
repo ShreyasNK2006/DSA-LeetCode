@@ -1,9 +1,19 @@
 import requests, os, json, base64, datetime, time, subprocess
 
+try:
+    import google.generativeai as genai
+    HAS_GENAI = True
+except ImportError:
+    HAS_GENAI = False
+
 LEETCODE_USERNAME = os.getenv("LEETCODE_USERNAME")
 REPO_NAME = os.getenv("REPO_NAME")
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 LEETCODE_SESSION = os.getenv("LEETCODE_SESSION")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
+if HAS_GENAI and GEMINI_API_KEY:
+    genai.configure(api_key=GEMINI_API_KEY)
 
 # We'll write files locally and let the workflow commit them
 HEADERS = {
@@ -42,20 +52,48 @@ def get_existing_files_local():
         return []
     return [os.path.splitext(f)[0] for f in os.listdir(problems_dir) if os.path.isfile(os.path.join(problems_dir, f))]
 
+def get_ai_explanation(code, lang_ext):
+    """Generates an explanation using Gemini API if available."""
+    if not HAS_GENAI or not GEMINI_API_KEY:
+        return "Explanation: (Configure GEMINI_API_KEY to enable AI explanations)"
+    
+    try:
+        model = genai.GenerativeModel('gemini-pro')
+        prompt = f"""
+        Explain the following {lang_ext} solution for a LeetCode problem.
+        1. Approach: A concise summary of the algorithm/logic.
+        2. Variables: Explain the purpose of key variables.
+        
+        Keep it concise and formatted as a comment block content.
+        
+        Code:
+        {code}
+        """
+        response = model.generate_content(prompt)
+        return response.text.strip()
+    except Exception as e:
+        print(f"⚠️ AI Generation failed: {e}")
+        return "Explanation: (AI generation failed)"
+
 def generate_comment_block(sub, lang_ext):
     """Generates a comment block with submission details."""
     title = sub.get("title")
     timestamp = sub.get("timestamp")
     runtime = sub.get("runtime")
     memory = sub.get("memory")
+    code = sub.get("code") or ""
     
     date_str = datetime.datetime.fromtimestamp(int(timestamp)).strftime('%Y-%m-%d')
+    
+    explanation = get_ai_explanation(code, lang_ext)
     
     info_lines = [
         f"Problem: {title}",
         f"Solved on: {date_str}",
         f"Runtime: {runtime}",
         f"Memory: {memory}",
+        "",
+        explanation
     ]
     
     # Determine comment syntax

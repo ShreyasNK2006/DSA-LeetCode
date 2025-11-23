@@ -31,7 +31,9 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install requests
+        run: |
+          pip install requests
+          pip install google-generativeai
 
       - name: Set Git identity
         run: |
@@ -44,6 +46,7 @@ jobs:
           LEETCODE_SESSION: ${{ secrets.LEETCODE_SESSION }}
           REPO_NAME: ${{ secrets.REPO_NAME }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           COMMIT_NAME: "Shreyas Kamat"
           COMMIT_EMAIL: "192124395+ShreyasNK2006@users.noreply.github.com"
         # Set commit timestamps to 7:30 PM IST (14:00 UTC) on the current run date

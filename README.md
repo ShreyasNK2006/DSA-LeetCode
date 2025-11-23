@@ -27,3 +27,19 @@ Ensure you have the required environment variables set (`LEETCODE_SESSION`, `LEE
 ```bash
 python3 annotate_existing.py
 ```
+
+## 🧠 AI Explanations
+
+To enable automatic AI-generated explanations for your solutions (Approach & Variable breakdown), you need to provide a Google Gemini API Key.
+
+1.  **Get an API Key:**
+    *   Go to [Google AI Studio](https://aistudio.google.com/app/apikey).
+    *   Create a new API key (it's free for personal use).
+
+2.  **Add to GitHub Secrets:**
+    *   Go to your repository **Settings** -> **Secrets and variables** -> **Actions**.
+    *   Click **New repository secret**.
+    *   Name: `GEMINI_API_KEY`
+    *   Value: Paste your API key.
+
+Once configured, the scripts will automatically generate explanations for new submissions and when running `annotate_existing.py`.
