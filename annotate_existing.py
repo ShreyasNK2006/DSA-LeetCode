@@ -63,7 +63,10 @@ def annotate_existing():
         # The new style starts with comment markers.
         # We can check for "Runtime:" and "Memory:" in the first few lines
         is_annotated = "Runtime:" in content[:500] and "Memory:" in content[:500]
-        has_explanation = "Approach:" in content[:1500] or "Explanation:" in content[:1500]
+        
+        # Check if it has a REAL explanation, not the placeholder
+        has_placeholder = "Explanation: (Configure GEMINI_API_KEY" in content[:1500] or "Explanation: (AI generation failed)" in content[:1500]
+        has_explanation = ("Approach:" in content[:1500] or "Explanation:" in content[:1500]) and not has_placeholder
         
         if is_annotated and has_explanation:
              print(f"ℹ️ {filename} seems already annotated with explanation.")
