@@ -1,10 +1,25 @@
+# daily.yml
+# ---------
+# Runs once every day at 02:00 UTC (07:30 AM IST).
+# Fetches the next 2 accepted LeetCode submissions (oldest → newest)
+# that have not yet been committed to this repository, adds a structured
+# comment header (with optional AI explanation via Gemini), and pushes
+# the result to the main branch.
+#
+# Required Secrets (Settings → Secrets and variables → Actions):
+#   LEETCODE_SESSION   – value of the LEETCODE_SESSION cookie from your browser
+#   LEETCODE_USERNAME  – your LeetCode username
+#   GEMINI_API_KEY     – (optional) Google Gemini key for AI explanations
+#
+# Optional Secrets:
+#   REPO_NAME          – owner/repo string (informational only)
+
 name: Daily LeetCode Sync
 
 on:
   schedule:
-    - cron: "0 2 * * *"    # Runs daily at 7:30 AM IST (02:00 UTC)
-    - cron: "0 14 * * *"   # Runs daily at 7:30 PM IST (14:00 UTC)
-  workflow_dispatch:
+    - cron: "0 2 * * *"   # 02:00 UTC = 07:30 AM IST, every day
+  workflow_dispatch:        # allow manual runs from the Actions tab
 
 jobs:
   sync:
@@ -14,50 +29,49 @@ jobs:
       contents: write
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: main
 
-      - name: Ensure on main and up-to-date
+      - name: Ensure branch is up-to-date
         run: |
           git checkout -B main
           git pull --rebase origin main || true
 
-      - name: Set up Python
+      - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
-          pip install requests
-          pip install google-generativeai
+          pip install --upgrade pip
+          pip install requests google-generativeai
 
       - name: Set Git identity
         run: |
-          git config --global user.name "Shreyas Kamat"
+          git config --global user.name  "Shreyas Kamat"
           git config --global user.email "192124395+ShreyasNK2006@users.noreply.github.com"
 
-      - name: Run LeetCode Sync
+      - name: Run LeetCode sync (2 problems)
         env:
           LEETCODE_USERNAME: ${{ secrets.LEETCODE_USERNAME }}
-          LEETCODE_SESSION: ${{ secrets.LEETCODE_SESSION }}
-          REPO_NAME: ${{ secrets.REPO_NAME }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          COMMIT_NAME: "Shreyas Kamat"
-          COMMIT_EMAIL: "192124395+ShreyasNK2006@users.noreply.github.com"
-        # Set commit timestamps to 7:30 PM IST (14:00 UTC) on the current run date
+          LEETCODE_SESSION:  ${{ secrets.LEETCODE_SESSION }}
+          GEMINI_API_KEY:    ${{ secrets.GEMINI_API_KEY }}
+          GITHUB_TOKEN:      ${{ secrets.GITHUB_TOKEN }}
+          REPO_NAME:         ${{ secrets.REPO_NAME }}
+          COMMIT_NAME:       "Shreyas Kamat"
+          COMMIT_EMAIL:      "192124395+ShreyasNK2006@users.noreply.github.com"
         run: |
-          export TARGET_DATE_UTC=$(date -u +"%Y-%m-%d")
-          export GIT_AUTHOR_DATE="${TARGET_DATE_UTC} 14:00:00 +0000"
-          export GIT_COMMITTER_DATE="${TARGET_DATE_UTC} 14:00:00 +0000"
-          echo "Using GIT_AUTHOR_DATE=$GIT_AUTHOR_DATE"
-          echo "Using GIT_COMMITTER_DATE=$GIT_COMMITTER_DATE"
+          # Stamp commits at 07:30 AM IST (02:00 UTC) on today's date
+          TARGET_DATE=$(date -u +"%Y-%m-%d")
+          export GIT_AUTHOR_DATE="${TARGET_DATE} 02:00:00 +0000"
+          export GIT_COMMITTER_DATE="${TARGET_DATE} 02:00:00 +0000"
+          echo "Commit timestamp: $GIT_AUTHOR_DATE"
           python leetcode_to_github.py
 
-      - name: Push Changes
+      - name: Push changes to main
         run: |
           git push origin HEAD:main
