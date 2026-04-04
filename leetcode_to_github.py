@@ -21,12 +21,15 @@ import json
 import datetime
 import time
 import subprocess
+import importlib
+from types import ModuleType
 
 # ---------------------------------------------------------------------------
 # Optional AI dependency
 # ---------------------------------------------------------------------------
+genai: ModuleType | None = None
 try:
-    import google.generativeai as genai
+    genai = importlib.import_module("google.generativeai")
     HAS_GENAI = True
 except ImportError:
     HAS_GENAI = False
