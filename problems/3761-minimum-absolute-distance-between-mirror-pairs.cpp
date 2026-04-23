@@ -2,53 +2,45 @@
  * Problem 3761: Minimum Absolute Distance Between Mirror Pairs
  * URL     : https://leetcode.com/problems/minimum-absolute-distance-between-mirror-pairs/
  * Solved  : 2026-04-17
- * Runtime : 924 ms
- * Memory  : 166.6 MB
+ * Runtime : 325 ms
+ * Memory  : 204.6 MB
  *
  * Explanation: (AI generation failed – check your GEMINI_API_KEY and quota.)
 */
 
 class Solution {
 public:
-    int reverse(int x)
+    int reverse(int n)
     {
-        int res=0;
-        while(x)
-            {
-                res*=10;
-                res+=(x%10);
-                x/=10;
-            }
-        return res;
+        int newnum=0;
+        while(n)
+        {
+            newnum*=10;
+            newnum+=(n%10);
+            n/=10;
+        }
+        return newnum;
     }
     int minMirrorPairDistance(vector<int>& nums) {
-        int mind=INT_MAX;
         unordered_map<int,vector<int>> mp;
-        for(int i=0;i<nums.size();i++)
+        int n=nums.size();
+        for(int i=0;i<n;i++)
+        {
+            mp[nums[i]].push_back(i);
+        }
+        int mindiff=INT_MAX;
+        for(int i=0;i<n;i++)
+        {
+            int rev = reverse(nums[i]);
+            auto it= lower_bound(mp[rev].begin(),mp[rev].end(),i);
+            if(it!=mp[rev].end())
             {
-                mp[nums[i]].push_back(i);
+                if(*it!=i)
+                mindiff=min(mindiff,abs(i-*it));
+                else if(it+1!=mp[rev].end())
+                mindiff=min(mindiff,abs(i-*(it+1)));
             }
-        for(int i=0;i<nums.size();i++)
-            {
-                int temp = reverse(nums[i]);
-                if(mp.find(temp)!=mp.end())
-                {
-                    for(int j=0;j<mp[temp].size();j++)
-                        {
-                            if(i==mp[temp][j])
-                                continue;
-                            mind=min(mind,(abs(i-mp[temp][j])));
-                            if(mind==1)
-                                return 1;
-                        }
-                }
-                mp[nums[i]].erase(mp[nums[i]].begin());
-                if(mp[nums[i]].empty())
-                    mp.erase(nums[i]);
-            }
-        if(mind!=INT_MAX)
-        return mind;
-        else
-            return -1;
+        }
+        return mindiff!=INT_MAX?mindiff:-1;
     }
 };
