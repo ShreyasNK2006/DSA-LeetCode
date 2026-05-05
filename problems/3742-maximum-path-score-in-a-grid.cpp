@@ -2,8 +2,8 @@
  * Problem 3742: Maximum Path Score in a Grid
  * URL     : https://leetcode.com/problems/maximum-path-score-in-a-grid/
  * Solved  : 2026-04-30
- * Runtime : 890 ms
- * Memory  : 499.3 MB
+ * Runtime : 928 ms
+ * Memory  : 499.5 MB
  *
  * Explanation: (AI generation failed – check your GEMINI_API_KEY and quota.)
 */
