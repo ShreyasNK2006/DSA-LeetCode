@@ -2,8 +2,8 @@
  * Problem 1590: Make Sum Divisible by P
  * URL     : https://leetcode.com/problems/make-sum-divisible-by-p/
  * Solved  : 2026-05-02
- * Runtime : 76 ms
- * Memory  : 87.8 MB
+ * Runtime : 85 ms
+ * Memory  : 87.7 MB
  *
  * Explanation: (AI generation failed – check your GEMINI_API_KEY and quota.)
 */
