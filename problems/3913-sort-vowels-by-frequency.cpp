@@ -2,8 +2,8 @@
  * Problem 3913: Sort Vowels by Frequency
  * URL     : https://leetcode.com/problems/sort-vowels-by-frequency/
  * Solved  : 2026-05-06
- * Runtime : 634 ms
- * Memory  : 20.8 MB
+ * Runtime : 629 ms
+ * Memory  : 20.6 MB
  *
  * Explanation: (AI generation failed – check your GEMINI_API_KEY and quota.)
 */
