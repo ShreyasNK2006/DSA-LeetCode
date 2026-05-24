@@ -2,8 +2,8 @@
  * Problem 3660: Jump Game IX
  * URL     : https://leetcode.com/problems/jump-game-ix/
  * Solved  : 2026-05-07
- * Runtime : 11 ms
- * Memory  : 225.8 MB
+ * Runtime : 12 ms
+ * Memory  : 225.7 MB
  *
  * Explanation: (AI generation failed – check your GEMINI_API_KEY and quota.)
 */
