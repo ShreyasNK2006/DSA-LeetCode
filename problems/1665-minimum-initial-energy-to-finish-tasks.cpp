@@ -2,8 +2,8 @@
  * Problem 1665: Minimum Initial Energy to Finish Tasks
  * URL     : https://leetcode.com/problems/minimum-initial-energy-to-finish-tasks/
  * Solved  : 2026-05-12
- * Runtime : 1791 ms
- * Memory  : 493.7 MB
+ * Runtime : 1788 ms
+ * Memory  : 493.9 MB
  *
  * Explanation: (AI generation failed – check your GEMINI_API_KEY and quota.)
 */
