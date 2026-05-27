@@ -2,8 +2,8 @@
  * Problem 1674: Minimum Moves to Make Array Complementary
  * URL     : https://leetcode.com/problems/minimum-moves-to-make-array-complementary/
  * Solved  : 2026-05-13
- * Runtime : 10 ms
- * Memory  : 93.4 MB
+ * Runtime : 24 ms
+ * Memory  : 93.6 MB
  *
  * Explanation: (AI generation failed – check your GEMINI_API_KEY and quota.)
 */
