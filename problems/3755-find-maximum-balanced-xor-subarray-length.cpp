@@ -2,7 +2,7 @@
  * Problem 3755: Find Maximum Balanced XOR Subarray Length
  * URL     : https://leetcode.com/problems/find-maximum-balanced-xor-subarray-length/
  * Solved  : 2026-05-23
- * Runtime : 878 ms
+ * Runtime : 762 ms
  * Memory  : 440 MB
  *
  * Explanation: (AI generation failed – check your GEMINI_API_KEY and quota.)
