@@ -2,8 +2,8 @@
  * Problem 3043: Find the Length of the Longest Common Prefix
  * URL     : https://leetcode.com/problems/find-the-length-of-the-longest-common-prefix/
  * Solved  : 2026-05-21
- * Runtime : 110 ms
- * Memory  : 168.9 MB
+ * Runtime : 116 ms
+ * Memory  : 168.8 MB
  *
  * Explanation: (AI generation failed – check your GEMINI_API_KEY and quota.)
 */
