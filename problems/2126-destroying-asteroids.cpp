@@ -2,8 +2,8 @@
  * Problem 2126: Destroying Asteroids
  * URL     : https://leetcode.com/problems/destroying-asteroids/
  * Solved  : 2026-05-31
- * Runtime : 207 ms
- * Memory  : 137.9 MB
+ * Runtime : 211 ms
+ * Memory  : 137.8 MB
  *
  * Explanation: (AI generation failed – check your GEMINI_API_KEY and quota.)
 */
