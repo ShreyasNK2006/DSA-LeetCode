@@ -2,8 +2,8 @@
  * Problem 0374: Guess Number Higher or Lower
  * URL     : https://leetcode.com/problems/guess-number-higher-or-lower/
  * Solved  : 2026-05-17
- * Runtime : 0 ms
- * Memory  : 8 MB
+ * Runtime : 2 ms
+ * Memory  : 7.9 MB
  *
  * Explanation: (AI generation failed – check your GEMINI_API_KEY and quota.)
 */
