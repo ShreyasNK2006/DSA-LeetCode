@@ -2,8 +2,8 @@
  * Problem 1391: Check if There is a Valid Path in a Grid
  * URL     : https://leetcode.com/problems/check-if-there-is-a-valid-path-in-a-grid/
  * Solved  : 2026-04-27
- * Runtime : 11 ms
- * Memory  : 60 MB
+ * Runtime : 13 ms
+ * Memory  : 59.9 MB
  *
  * Explanation: (AI generation failed – check your GEMINI_API_KEY and quota.)
 */
