@@ -2,7 +2,7 @@
  * Problem 0205: Isomorphic Strings
  * URL     : https://leetcode.com/problems/isomorphic-strings/
  * Solved  : 2026-05-01
- * Runtime : 0 ms
+ * Runtime : 4 ms
  * Memory  : 9.5 MB
  *
  * Explanation: (AI generation failed – check your GEMINI_API_KEY and quota.)
