@@ -2,7 +2,7 @@
  * Problem 1840: Maximum Building Height
  * URL     : https://leetcode.com/problems/maximum-building-height/
  * Solved  : 2026-06-20
- * Runtime : 1374 ms
+ * Runtime : 1382 ms
  * Memory  : 106.6 MB
  *
  * Explanation: (AI generation failed – check your GEMINI_API_KEY and quota.)
