@@ -3,7 +3,7 @@
  * URL     : https://leetcode.com/problems/minimum-lights-to-illuminate-a-road/
  * Solved  : 2026-06-23
  * Runtime : 21 ms
- * Memory  : 277.9 MB
+ * Memory  : 277.7 MB
  *
  * Explanation: (AI generation failed – check your GEMINI_API_KEY and quota.)
 */
