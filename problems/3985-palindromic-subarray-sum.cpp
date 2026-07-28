@@ -2,8 +2,8 @@
  * Problem 3985: Palindromic Subarray Sum
  * URL     : https://leetcode.com/problems/palindromic-subarray-sum/
  * Solved  : 2026-07-08
- * Runtime : 80 ms
- * Memory  : 226.6 MB
+ * Runtime : 79 ms
+ * Memory  : 226.5 MB
  *
  * Explanation: (AI generation failed – check your GEMINI_API_KEY and quota.)
 */
