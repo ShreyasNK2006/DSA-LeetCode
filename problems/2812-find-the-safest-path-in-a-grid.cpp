@@ -2,8 +2,8 @@
  * Problem 2812: Find the Safest Path in a Grid
  * URL     : https://leetcode.com/problems/find-the-safest-path-in-a-grid/
  * Solved  : 2026-07-06
- * Runtime : 454 ms
- * Memory  : 248.3 MB
+ * Runtime : 437 ms
+ * Memory  : 248.2 MB
  *
  * Explanation: (AI generation failed – check your GEMINI_API_KEY and quota.)
 */
