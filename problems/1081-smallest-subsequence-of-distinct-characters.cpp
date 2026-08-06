@@ -2,7 +2,7 @@
  * Problem 1081: Smallest Subsequence of Distinct Characters
  * URL     : https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/
  * Solved  : 2026-07-19
- * Runtime : 3 ms
+ * Runtime : 0 ms
  * Memory  : 8.9 MB
  *
  * Explanation: (AI generation failed – check your GEMINI_API_KEY and quota.)
