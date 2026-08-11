@@ -2,8 +2,8 @@
  * Problem 3014: Minimum Number of Pushes to Type Word I
  * URL     : https://leetcode.com/problems/minimum-number-of-pushes-to-type-word-i/
  * Solved  : 2026-07-30
- * Runtime : 2 ms
- * Memory  : 10.3 MB
+ * Runtime : 0 ms
+ * Memory  : 10.1 MB
  *
  * Explanation: (AI generation failed – check your GEMINI_API_KEY and quota.)
 */
