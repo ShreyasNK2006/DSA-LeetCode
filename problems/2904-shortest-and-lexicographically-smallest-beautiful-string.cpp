@@ -3,7 +3,7 @@
  * URL     : https://leetcode.com/problems/shortest-and-lexicographically-smallest-beautiful-string/
  * Solved  : 2026-08-26
  * Runtime : 0 ms
- * Memory  : 9.1 MB
+ * Memory  : 9 MB
  *
  * Explanation: (AI generation failed – check your GEMINI_API_KEY and quota.)
 */
