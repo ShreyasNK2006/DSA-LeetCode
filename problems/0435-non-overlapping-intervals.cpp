@@ -3,7 +3,7 @@
  * URL     : https://leetcode.com/problems/non-overlapping-intervals/
  * Solved  : 2026-07-26
  * Runtime : 59 ms
- * Memory  : 93.9 MB
+ * Memory  : 94 MB
  *
  * Explanation: (AI generation failed – check your GEMINI_API_KEY and quota.)
 */
